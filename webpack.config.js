@@ -8,6 +8,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
         test: /\.js$/,
         use: "babel-loader",
         exclude: /node_modules/,
@@ -34,26 +39,34 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "template.html"),
-      filename: "index.html",
-    }),
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/Html/Browser.html",
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
   ],
 
   devServer: {
-    watchFiles: path.join(__dirname, "src"),
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
     port: 9000,
+    hot: true,
+    open: true,
+    historyApiFallback: true,
   },
 
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, "src", "App.tsx"),
+
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "index.[contenthash].js",
+    filename: "bundle.js",
   },
 
   optimization: {
