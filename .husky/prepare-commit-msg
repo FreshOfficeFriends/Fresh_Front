@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# first arg, delete comments (strings start #), line breaks with spaces
+COMMIT_MESSAGE_WRITE=$(echo "$1" | sed -e 's/^#.*//g' | tr '\n' ' ' )
+COMMIT_MESSAGE=$(cat $COMMIT_MESSAGE_WRITE)
+
+# second arg
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+CUT_BRUNCH_RESULT=$(echo "$BRANCH_NAME" | cut -d"_" -f2-)
+
+PATTERN_RUS="[а-яА-ЯёЁ]+"
+if [[ "$COMMIT_MESSAGE" =~ $PATTERN_RUS ]]; then
+  RUS_LETTER=`grep -o -E $PATTERN_RUS <<< "$COMMIT_MESSAGE"`
+  echo "ERROR: message in commit \n\"$COMMIT_MESSAGE\"\ncontains russian letters: \"$RUS_LETTER\""
+  exit 1
+fi
+
+PREFIX_PATTERN_FEAT='feat'
+PREFIX_PATTERN_FIX='fix'
+PATTERN_USUAL_COMMIT_FEAT="$PREFIX_PATTERN_FEAT"_"$CUT_BRUNCH_RESULT: *"
+PATTERN_USUAL_COMMIT_FIX="$PREFIX_PATTERN_FIX"_"$CUT_BRUNCH_RESULT: *"
+
+if [[ $COMMIT_MESSAGE == $PATTERN_USUAL_COMMIT_FEAT ]]; then
+    echo "The commit message matches the template"
+elif [[ $COMMIT_MESSAGE == $PATTERN_USUAL_COMMIT_FIX ]]; then
+    echo "The commit message is not matches the template"
+else
+    echo "The commit message is not matches the template"
+    exit 1
+fi
+
+echo "SUCCESS: commit message check"
