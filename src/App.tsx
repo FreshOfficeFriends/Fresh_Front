@@ -1,15 +1,8 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
+import React from 'react';
+import { Login } from './login';
 
-// interface AppProps {
-//   message: string;
-// }
+export const App: React.FC = () => {
+  return <Login />;
+};
 
-// const App: React.FC<AppProps> = ({ message }) => {
-//   return <h1>{message}</h1>;
-// };
-
-// ReactDOM.render(
-//   <App message="Hello, world!!!!!" />,
-//   document.getElementById("root")
-// );
+export default App;

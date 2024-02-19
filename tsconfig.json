@@ -2,6 +2,12 @@
     "compilerOptions": {
         "target": "es5",
         "jsx": "react",
+        "baseUrl": "./",
+        "paths": {
+          "@shared": [
+           "src/shared"
+          ],
+        },
         "strict": true,
         "alwaysStrict": true,
         "skipLibCheck": true,
@@ -13,7 +19,8 @@
         "strictFunctionTypes": true,
         "esModuleInterop": true,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": "./",
+        "allowSyntheticDefaultImports": true,
+        
     },
     "exclude": [
         "node_modules"
