@@ -1,6 +1,8 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es2017",
+        "module": "esnext",
+        "moduleResolution": "node",
         "jsx": "react",
         "baseUrl": "./",
         "paths": {
@@ -20,6 +22,7 @@
         "esModuleInterop": true,
         "noFallthroughCasesInSwitch": true,
         "allowSyntheticDefaultImports": true,
+        "ignoreDeprecations": "5.0",
         
     },
     "exclude": [

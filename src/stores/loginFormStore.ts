@@ -32,7 +32,7 @@ const hooks = {
     autorun(() => form.clearing && console.log('Clearing...'));
     autorun(() => form.resetting && console.log('Resetting...'));
     autorun(() => form.validating && console.log('Validating...'));
-    autorun(() => form.submitting && console.log('Submitting...'));
+    autorun((lol) => form.submitting && console.log(lol));
   },
   onSuccess(form: MobxReactForm) {
     alert('Form is valid! Send the request here.');

@@ -33,7 +33,9 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!mockServiceWorker.js'],
+    }),
     new HtmlWebpackPlugin({
       template: './src/Html/Browser.html',
     }),
