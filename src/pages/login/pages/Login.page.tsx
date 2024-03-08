@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Box, Typography } from '@mui/material';
-import { Form } from '../organisms';
-import { form } from '../../stores';
+import { Form } from './components';
+import { form } from '../../../stores';
 
 export const Login: React.FC = () => {
   return (

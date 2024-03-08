@@ -5,12 +5,14 @@ import React from 'react';
 
 type TextFieldCustomParams = {
   field: Field;
+  onBlur?: () => void;
+  onChange?: () => void;
 };
 
-export const TextFieldCustom = observer(({ field }: TextFieldCustomParams) => {
+export const TextFieldCustom = observer(({ field, onBlur }: TextFieldCustomParams) => {
   return (
     <>
-      <TextField {...field.bind()} variant="outlined" fullWidth={true} />
+      <TextField {...field.bind()} variant="outlined" fullWidth={true} onBlur={onBlur} />
       <small style={{ color: 'red' }}>{field.error}</small>
     </>
   );

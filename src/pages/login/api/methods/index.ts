@@ -1,0 +1,1 @@
+export { checkUniqueData } from './checkUniqueData';
